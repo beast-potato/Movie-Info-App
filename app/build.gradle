@@ -22,7 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.beastpotato.potato:potato_api:1.6'
-    apt 'com.beastpotato.potato:potato_compiler:1.6'
+    compile 'com.beastpotato.potato:potato_api:1.8'
+    apt 'com.beastpotato.potato:potato_compiler:1.8'
     compile 'org.glassfish.main:javax.annotation:4.0-b33'
 }

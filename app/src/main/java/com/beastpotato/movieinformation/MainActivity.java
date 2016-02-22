@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.beastpotato.movieinformation.endpoints.DiscoverMovieEndpointApiRequest;
-import com.beastpotato.movieinformation.endpoints.response.DiscoverMovieEndpointApiResponse;
+import com.beastpotato.movieinformation.endpoints.discovermovieendpointresponse.DiscoverMovieEndpointApiResponse;
 import com.beastpotato.potato.api.net.ApiRequest;
 
 import java.util.List;

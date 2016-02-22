@@ -16,7 +16,7 @@ import com.beastpotato.potato.api.UrlPathParam;
         "      \"adult\": false,\n" +
         "      \"backdrop_path\": \"/razvUuLkF7CX4XsLyj02ksC0ayy.jpg\",\n" +
         "      \"genre_ids\": [\n" +
-        "        80,\n" +
+        "        81,\n" +
         "        28,\n" +
         "        53\n" +
         "      ],\n" +
