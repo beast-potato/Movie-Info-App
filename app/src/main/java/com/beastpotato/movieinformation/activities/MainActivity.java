@@ -10,7 +10,7 @@ import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.fragments.BaseFragment;
 import com.beastpotato.movieinformation.fragments.DiscoverFragment;
 
-public class HomeActivity extends AppCompatActivity implements BaseFragment.OnRefreshDoneListener {
+public class MainActivity extends AppCompatActivity implements BaseFragment.OnRefreshDoneListener {
     private static int FRAG_TAG = 0;
     private FrameLayout fragmentContainer;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.OnRe
         setContentView(R.layout.home_layout);
         findViews();
         setListeners();
-        setData();
+        showFragment(DiscoverFragment.newInstance());
     }
 
     private void findViews() {
@@ -33,20 +33,13 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.OnRe
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getCurrentFragment().refresh(HomeActivity.this);
+                getCurrentFragment().refresh(MainActivity.this);
             }
         });
     }
 
     private BaseFragment getCurrentFragment() {
         return (BaseFragment) getSupportFragmentManager().findFragmentByTag(Integer.toString(FRAG_TAG - 1));
-    }
-
-    private void setData() {
-        showLoading();
-        BaseFragment baseFragment = DiscoverFragment.newInstance();
-        baseFragment.setRefreshListener(this);
-        showFragment(baseFragment);
     }
 
     public void showLoading() {
@@ -63,6 +56,8 @@ public class HomeActivity extends AppCompatActivity implements BaseFragment.OnRe
     }
 
     public void showFragment(BaseFragment fragment) {
+        showLoading();
+        fragment.setRefreshListener(this);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.fragment_container, fragment, "" + FRAG_TAG);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

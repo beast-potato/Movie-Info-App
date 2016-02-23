@@ -12,7 +12,6 @@ import com.android.volley.VolleyError;
 import com.beastpotato.movieinformation.Constants;
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.databinding.DiscoverMoviesLayoutBinding;
-import com.beastpotato.movieinformation.endpoints.DiscoverMovieEndpointApiRequest;
 import com.beastpotato.movieinformation.endpoints.discovermovieendpointresponse.DiscoverMovieEndpointApiResponse;
 import com.beastpotato.movieinformation.viewmodels.DiscoverMovieViewModel;
 import com.beastpotato.potato.api.net.ApiRequest;
@@ -34,23 +33,16 @@ public class DiscoverFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.discover_movies_layout, container, false);
-        viewModel = new DiscoverMovieViewModel();
+        viewModel = new DiscoverMovieViewModel(Constants.baseUrl, getBaseActivity());
         binding.setDiscoverMoviesViewModel(viewModel);
         return binding.getRoot();
     }
 
     @Override
     protected void setupView(View view) {
-        DiscoverMovieEndpointApiRequest discoverRequest = new DiscoverMovieEndpointApiRequest(Constants.baseUrl, getBaseActivity());
-        discoverRequest.setApiKey(Constants.apiKey);
-        discoverRequest.setContentType(Constants.contentTypeJson);
-        discoverRequest.setDiscoverType("movie");
-        discoverRequest.setPage(10);
-
-        discoverRequest.send(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
+        viewModel.loadData(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
             @Override
             public void onResponse(DiscoverMovieEndpointApiResponse data) {
-                viewModel.setDiscoverMovieModel(data);
                 setupViewComplete();
             }
 

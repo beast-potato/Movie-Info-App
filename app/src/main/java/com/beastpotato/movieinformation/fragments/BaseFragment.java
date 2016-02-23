@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.beastpotato.movieinformation.activities.HomeActivity;
+import com.beastpotato.movieinformation.activities.MainActivity;
 
 /**
  * Created by Oleksiy on 1/31/2016.
@@ -33,8 +33,8 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public HomeActivity getBaseActivity() {
-        return (HomeActivity) super.getActivity();
+    public MainActivity getBaseActivity() {
+        return (MainActivity) super.getActivity();
     }
 
     public void setRefreshListener(OnRefreshDoneListener refreshListener) {
