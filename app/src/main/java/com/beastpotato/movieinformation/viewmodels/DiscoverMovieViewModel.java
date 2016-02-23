@@ -53,7 +53,7 @@ public class DiscoverMovieViewModel extends BaseObservable {
     public List<MovieCardViewModel> getMovieCardViewModels() {
         List<MovieCardViewModel> movieCardViewModelList = new ArrayList<>();
         if (discoverMovieModel != null) {
-            for (Result movie : discoverMovieModel.getResults()) {
+            for (Result movie : discoverMovieModel.results) {
                 movieCardViewModelList.add(new MovieCardViewModel(movie));
             }
         }

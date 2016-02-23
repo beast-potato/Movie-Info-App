@@ -19,11 +19,11 @@ public class ImageManager {
     }
 
     public void setup(ConfigEndpointApiResponse response) {
-        imageInfo = response.getImages();
+        imageInfo = response.images;
     }
 
     public String getPosterImageUrl(String imagePath) {
         String apiKeyParam = "&api_key=" + Constants.apiKey;
-        return imageInfo.getBaseUrl() + imageInfo.getPosterSizes().get((imageInfo.getPosterSizes().size() - 1) / 2) + imagePath + apiKeyParam;
+        return imageInfo.baseUrl + imageInfo.posterSizes.get((imageInfo.posterSizes.size() - 1) / 2) + imagePath + apiKeyParam;
     }
 }

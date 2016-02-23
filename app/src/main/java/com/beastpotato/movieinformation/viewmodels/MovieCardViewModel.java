@@ -18,11 +18,11 @@ public class MovieCardViewModel extends BaseObservable {
 
     @Bindable
     public String getPosterImagePath() {
-        return movieModel.get().getPosterPath();
+        return movieModel.get().posterPath;
     }
 
     @Bindable
     public String getTitle() {
-        return movieModel.get().getTitle();
+        return movieModel.get().title;
     }
 }
