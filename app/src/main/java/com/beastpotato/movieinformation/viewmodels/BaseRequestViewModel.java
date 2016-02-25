@@ -3,7 +3,6 @@ package com.beastpotato.movieinformation.viewmodels;
 import android.content.Context;
 import android.databinding.BaseObservable;
 
-import com.android.volley.VolleyError;
 import com.beastpotato.movieinformation.endpoints.RequestBase;
 import com.beastpotato.potato.api.net.ApiRequest;
 
@@ -37,11 +36,5 @@ public abstract class BaseRequestViewModel<T, U extends RequestBase.FieldsDef, V
 
     public void setModel(V model) {
         this.model = model;
-    }
-
-    public interface OnLoadCompletion {
-        void onSuccess();
-
-        void onFailure(VolleyError error);
     }
 }

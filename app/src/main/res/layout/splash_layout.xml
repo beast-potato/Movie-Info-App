@@ -15,5 +15,6 @@
         android:layout_below="@+id/splash_loading_progress"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/space_small"
-        android:text="@string/loading" />
+        android:text="@string/loading"
+        android:textColor="@color/copy_normal" />
 </RelativeLayout>

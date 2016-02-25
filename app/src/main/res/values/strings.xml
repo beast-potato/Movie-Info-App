@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Movie Information</string>
     <string name="loading">Loading...</string>
+    <string name="discover">Discover</string>
+    <string name="todo">Todo</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="menu_search">Search</string>
 </resources>

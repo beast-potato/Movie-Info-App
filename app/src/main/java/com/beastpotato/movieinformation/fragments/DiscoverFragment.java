@@ -3,6 +3,7 @@ package com.beastpotato.movieinformation.fragments;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.beastpotato.potato.api.net.ApiRequest;
 public class DiscoverFragment extends BaseFragment {
     private DiscoverMoviesLayoutBinding binding;
     private DiscoverMovieViewModel viewModel;
+    private Toolbar toolbar;
 
     public static DiscoverFragment newInstance() {
         DiscoverFragment fragment = new DiscoverFragment();
@@ -29,6 +31,11 @@ public class DiscoverFragment extends BaseFragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,4 +62,5 @@ public class DiscoverFragment extends BaseFragment {
             }
         });
     }
+
 }

@@ -27,7 +27,9 @@ public class SplashActivity extends AppCompatActivity {
             public void onResponse(ConfigEndpointApiResponse data) {
                 ImageManager.getInstance().setup(data);
                 Intent startDiscoverActivity = new Intent(SplashActivity.this, MainActivity.class);
+                startDiscoverActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(startDiscoverActivity);
+                finish();
             }
 
             @Override

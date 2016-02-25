@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#1f7a1f</color>
     <color name="colorAccent">#0066ff</color>
     <color name="background_white">#ffffff</color>
+    <color name="background_light_gray">#efefef</color>
+    <color name="copy_normal">#202020</color>
 </resources>

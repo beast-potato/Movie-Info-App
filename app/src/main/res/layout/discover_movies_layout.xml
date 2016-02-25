@@ -9,11 +9,17 @@
             type="com.beastpotato.movieinformation.viewmodels.DiscoverMovieViewModel" />
     </data>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/discover_movies_grid_recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:itemBinding="@{discoverMoviesViewModel.itemBinding}"
-        app:items="@{discoverMoviesViewModel.movieCardViewModels}"
-        app:layoutManager="@{discoverMoviesViewModel.layoutManager}" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/discover_movies_grid_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemBinding="@{discoverMoviesViewModel.itemBinding}"
+            app:items="@{discoverMoviesViewModel.movieCardViewModels}"
+            app:layoutManager="@{discoverMoviesViewModel.layoutManager}" />
+    </RelativeLayout>
+
 </layout>
