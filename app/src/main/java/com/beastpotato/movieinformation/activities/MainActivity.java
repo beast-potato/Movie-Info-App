@@ -19,8 +19,9 @@ import android.widget.Toast;
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.fragments.BaseFragment;
 import com.beastpotato.movieinformation.fragments.DiscoverFragment;
+import com.beastpotato.movieinformation.fragments.TestFragment;
 
-public class MainActivity extends AppCompatActivity implements BaseFragment.OnRefreshDoneListener {
+public class MainActivity extends AppCompatActivity {
     private static int FRAG_TAG = 0;
     private FrameLayout fragmentContainer;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -47,12 +48,6 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.OnRe
     }
 
     private void setListeners() {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getCurrentFragment().refresh(MainActivity.this);
-            }
-        });
 
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -86,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.OnRe
                         showFragment(DiscoverFragment.newInstance());
                         return true;
                     case R.id.todo_navigation_item:
-                        Toast.makeText(MainActivity.this, "todo: show search", Toast.LENGTH_LONG).show();
+                        showFragment(TestFragment.newInstance());
                         return true;
                 }
                 return false;
@@ -124,19 +119,12 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.OnRe
     }
 
     public void showFragment(BaseFragment fragment) {
-        showLoading();
-        fragment.setRefreshListener(this);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.fragment_container, fragment, "" + FRAG_TAG);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.addToBackStack(null);
         ft.commit();
         FRAG_TAG++;
-    }
-
-    @Override
-    public void onRefreshDone() { //current fragment refreshed data
-        hideLoading();
     }
 
     @Override

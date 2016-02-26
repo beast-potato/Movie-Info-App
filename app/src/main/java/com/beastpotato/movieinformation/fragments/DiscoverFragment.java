@@ -31,11 +31,6 @@ public class DiscoverFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +45,7 @@ public class DiscoverFragment extends BaseFragment {
         viewModel.loadData(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
             @Override
             public void onResponse(DiscoverMovieEndpointApiResponse data) {
-                setupViewComplete();
+
             }
 
             @Override
@@ -58,7 +53,6 @@ public class DiscoverFragment extends BaseFragment {
                 error.printStackTrace();
                 //todo: create error screen
                 Toast.makeText(getBaseActivity(), "request failed!", Toast.LENGTH_LONG).show();
-                setupViewComplete();
             }
         });
     }

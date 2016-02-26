@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by Oleksiy on 1/31/2016.
  */
-public class BindingAdapter<T> extends RecyclerView.Adapter<BindingAdapter.BindingViewHolder> {
+public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingRecyclerViewAdapter.BindingViewHolder> {
     private List<T> data;
     private ItemBinder<T> binding;
 
-    public BindingAdapter(List data, ItemBinder<T> binding) {
+    public BindingRecyclerViewAdapter(List data, ItemBinder<T> binding) {
         this.data = data;
         this.binding = binding;
     }
