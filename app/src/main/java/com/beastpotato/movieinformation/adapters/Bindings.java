@@ -24,10 +24,10 @@ public class Bindings {
         }
     }
 
-//    @BindingAdapter(value = {"items","itemBinding"})
-//    public static <T> void showPagerList(ViewPager viewPager, List<T>items, List<ItemBinder<T>>itemBinding){
-//        viewPager.setAdapter(new BindingViewPagerAdapter<>(items,itemBinding));
-//    }
+    @BindingAdapter(value = {"items", "itemBinding"})
+    public static <T> void showPagerList(ViewPager viewPager, List<T> items, List<ItemBinder<T>> itemBinding) {
+        viewPager.setAdapter(new BindingViewPagerAdapter<>(items, itemBinding));
+    }
 
     @BindingAdapter(value = {"tabLayout", "tabStrings", "items", "itemBinding"})
     public static <T> void showPagerListWithTabs(final ViewPager viewPager, final TabLayout tabLayout, List<String> tabStrings, List<T> items, List<ItemBinder<T>> itemBinding) {
