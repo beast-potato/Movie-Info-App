@@ -1,13 +1,15 @@
 package com.beastpotato.movieinformation.activities;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -19,16 +21,15 @@ import android.widget.Toast;
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.fragments.BaseFragment;
 import com.beastpotato.movieinformation.fragments.DiscoverFragment;
-import com.beastpotato.movieinformation.fragments.TestFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static int FRAG_TAG = 0;
     private FrameLayout fragmentContainer;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private View loadingOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void findViews() {
         fragmentContainer = (FrameLayout) findViewById(R.id.fragment_container);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        loadingOverlay = findViewById(R.id.main_loader);
     }
 
     private void setListeners() {
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(DiscoverFragment.newInstance());
                         return true;
                     case R.id.todo_navigation_item:
-                        showFragment(TestFragment.newInstance());
+                        //todo
                         return true;
                 }
                 return false;
@@ -106,16 +107,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLoading() {
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-            }
-        });
+        loadingOverlay.setVisibility(View.VISIBLE);
     }
 
     public void hideLoading() {
-        swipeRefreshLayout.setRefreshing(false);
+        loadingOverlay.setVisibility(View.GONE);
     }
 
     public void showFragment(BaseFragment fragment) {
@@ -157,5 +153,25 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    public void showOkError(String title, String msg, DialogInterface.OnClickListener onOkClickListener, DialogInterface.OnClickListener onCancelClickListener) {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setPositiveButton(getString(R.string.ok), onOkClickListener);
+        builder.setNegativeButton(getString(R.string.cancel), onCancelClickListener);
+        builder.show();
+    }
+
+    public void showOkError(@StringRes int titleRes, @StringRes int msgRes, DialogInterface.OnClickListener onOkClickListener, DialogInterface.OnClickListener onCancelClickListener) {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(getString(titleRes));
+        builder.setMessage(getString(msgRes));
+        builder.setPositiveButton(getString(R.string.ok), onOkClickListener);
+        builder.setNegativeButton(getString(R.string.cancel), onCancelClickListener);
+        builder.show();
     }
 }

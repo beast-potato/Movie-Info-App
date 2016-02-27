@@ -7,24 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Oleksiy on 2/25/2016.
  */
-public class BindingViewPagerAdapter<T> extends PagerAdapter {
-    private List<T> data = new ArrayList<>();
-    private List<ItemBinder<T>> bindings;
+public class BindingViewPagerAdapter extends PagerAdapter {
+    private List<ItemBinder> bindings;
 
-    public BindingViewPagerAdapter(List<T> data, List<ItemBinder<T>> bindings) {
-        this.data = data;
+    public BindingViewPagerAdapter(List<ItemBinder> bindings) {
         this.bindings = bindings;
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        return bindings.size();
     }
 
     @Override
@@ -34,9 +31,9 @@ public class BindingViewPagerAdapter<T> extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ItemBinder<T> itemBinding = bindings.get(position);
+        ItemBinder itemBinding = bindings.get(position);
         ViewDataBinding viewBinding = DataBindingUtil.inflate(LayoutInflater.from(container.getContext()), itemBinding.getLayoutItemId(), container, false);
-        viewBinding.setVariable(itemBinding.getBoundVariableId(), data.get(position));
+        viewBinding.setVariable(itemBinding.getBoundVariableId(), bindings.get(position).getBoundObject());
         viewBinding.executePendingBindings();
         View itemView = viewBinding.getRoot();
         container.addView(itemView);

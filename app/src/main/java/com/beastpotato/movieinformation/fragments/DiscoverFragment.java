@@ -7,22 +7,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.VolleyError;
-import com.beastpotato.movieinformation.Constants;
 import com.beastpotato.movieinformation.R;
-import com.beastpotato.movieinformation.databinding.DiscoverMoviesLayoutBinding;
-import com.beastpotato.movieinformation.endpoints.discovermovieendpointresponse.DiscoverMovieEndpointApiResponse;
-import com.beastpotato.movieinformation.viewmodels.DiscoverMovieViewModel;
-import com.beastpotato.potato.api.net.ApiRequest;
+import com.beastpotato.movieinformation.databinding.DiscoverViewpagerLayoutBinding;
+import com.beastpotato.movieinformation.viewmodels.DiscoverViewpagerViewModel;
 
 /**
  * Created by Oleksiy on 2/21/2016.
  */
 public class DiscoverFragment extends BaseFragment {
-    private DiscoverMoviesLayoutBinding binding;
-    private DiscoverMovieViewModel viewModel;
+    private DiscoverViewpagerLayoutBinding binding;
+    private DiscoverViewpagerViewModel viewModel;
     private Toolbar toolbar;
 
     public static DiscoverFragment newInstance() {
@@ -34,27 +29,13 @@ public class DiscoverFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.discover_movies_layout, container, false);
-        viewModel = new DiscoverMovieViewModel(Constants.baseUrl, getBaseActivity());
-        binding.setDiscoverMoviesViewModel(viewModel);
+        binding = DataBindingUtil.inflate(inflater, R.layout.discover_viewpager_layout, container, false);
         return binding.getRoot();
     }
 
     @Override
     protected void setupView(View view) {
-        viewModel.loadData(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
-            @Override
-            public void onResponse(DiscoverMovieEndpointApiResponse data) {
-
-            }
-
-            @Override
-            public void onError(VolleyError error) {
-                error.printStackTrace();
-                //todo: create error screen
-                Toast.makeText(getBaseActivity(), "request failed!", Toast.LENGTH_LONG).show();
-            }
-        });
+        binding.setDiscoverViewpagerViewModel(new DiscoverViewpagerViewModel(binding, getBaseActivity()));
     }
 
 }

@@ -11,26 +11,25 @@ import com.beastpotato.movieinformation.MyApplication;
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.activities.MainActivity;
 import com.beastpotato.movieinformation.adapters.ItemBinder;
-import com.beastpotato.movieinformation.endpoints.DiscoverMovieEndpointApiRequest;
-import com.beastpotato.movieinformation.endpoints.discovermovieendpointresponse.DiscoverMovieEndpointApiResponse;
-import com.beastpotato.movieinformation.endpoints.discovermovieendpointresponse.Result;
+import com.beastpotato.movieinformation.endpoints.DiscoverTvEndpointApiRequest;
+import com.beastpotato.movieinformation.endpoints.discovertvendpointresponse.DiscoverTvEndpointApiResponse;
+import com.beastpotato.movieinformation.endpoints.discovertvendpointresponse.Result;
 import com.beastpotato.potato.api.net.ApiRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Oleksiy on 2/21/2016.
+ * Created by Admin on 2/27/2016.
  */
-public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEndpointApiResponse, DiscoverMovieEndpointApiRequest.Fields, DiscoverMovieEndpointApiRequest> {
+public class DiscoverTvViewModel extends BaseRequestViewModel<DiscoverTvEndpointApiResponse, DiscoverTvEndpointApiRequest.Fields, DiscoverTvEndpointApiRequest> {
     public ObservableField<GridLayoutManager> layoutManager = new ObservableField<>();
-    private DiscoverMovieEndpointApiResponse discoverMovieModel;
+    private DiscoverTvEndpointApiResponse discoverTvModel;
     private List<ItemBinder> itemBindings;
     private MainActivity mainActivity;
 
-
-    public DiscoverMovieViewModel(MainActivity activity) {
-        super(DiscoverMovieEndpointApiRequest.class, Constants.baseUrl, activity);
+    public DiscoverTvViewModel(MainActivity activity) {
+        super(DiscoverTvEndpointApiRequest.class, Constants.baseUrl, activity);
         this.layoutManager.set(new GridLayoutManager(MyApplication.getContext(), 2));
         this.itemBindings = new ArrayList<>();
         this.mainActivity = activity;
@@ -38,10 +37,10 @@ public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEn
         getModel().setContentType(Constants.contentTypeJson);
         getModel().setSortBy("popularity.desc");
         getModel().setPage(10);
-        loadData(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
+        loadData(new ApiRequest.RequestCompletion<DiscoverTvEndpointApiResponse>() {
             @Override
-            public void onResponse(DiscoverMovieEndpointApiResponse data) {
-                setDiscoverMovieModel(data);
+            public void onResponse(DiscoverTvEndpointApiResponse data) {
+                setDiscoverTvModel(data);
                 mainActivity.hideLoading();
             }
 
@@ -53,29 +52,28 @@ public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEn
     }
 
     @Override
-    public void loadData(final ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse> completion) {
+    public void loadData(ApiRequest.RequestCompletion<DiscoverTvEndpointApiResponse> completion) {
         mainActivity.showLoading();
         getModel().send(completion);
     }
 
-
     @Bindable
-    public DiscoverMovieEndpointApiResponse getDiscoverMovieModel() {
-        return discoverMovieModel;
+    public DiscoverTvEndpointApiResponse getDiscoverTvModel() {
+        return discoverTvModel;
     }
 
-    public void setDiscoverMovieModel(DiscoverMovieEndpointApiResponse discoverMovieModel) {
-        this.discoverMovieModel = discoverMovieModel;
-        notifyPropertyChanged(BR.discoverMovieModel);
+    public void setDiscoverTvModel(DiscoverTvEndpointApiResponse discoverTvModel) {
+        this.discoverTvModel = discoverTvModel;
+        notifyPropertyChanged(BR.discoverTvModel);
         notifyPropertyChanged(BR.itemBindings);
     }
 
     @Bindable
     public List<ItemBinder> getItemBindings() {
         itemBindings = new ArrayList<>();
-        if (discoverMovieModel != null) {
-            for (Result movie : discoverMovieModel.results) {
-                itemBindings.add(new ItemBinder(R.layout.movie_card_layout, BR.movieCardViewModel, new MovieCardViewModel(movie)));
+        if (discoverTvModel != null) {
+            for (Result movie : discoverTvModel.results) {
+                itemBindings.add(new ItemBinder(R.layout.tv_card_layout, BR.tvCardViewModel, new TvCardViewModel(movie)));
             }
         }
         return itemBindings;

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="testViewpagerViewModel"
-            type="com.beastpotato.movieinformation.viewmodels.TestViewpagerViewModel" />
+            name="discoverViewpagerViewModel"
+            type="com.beastpotato.movieinformation.viewmodels.DiscoverViewpagerViewModel" />
     </data>
 
     <RelativeLayout
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background_light_gray"
-            android:setOnTabSelectedListener="@{testViewpagerViewModel.onTabSelectedListener}"
+            android:setOnTabSelectedListener="@{discoverViewpagerViewModel.onTabSelectedListener}"
             app:tabMode="scrollable" />
 
         <android.support.v4.view.ViewPager
@@ -26,9 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tabs"
-            app:itemBinding="@{testViewpagerViewModel.itemBindings}"
-            app:items="@{testViewpagerViewModel.items}"
-            app:tabLayout="@{testViewpagerViewModel.tabLayout}"
-            app:tabStrings="@{testViewpagerViewModel.tabStrings}" />
+            app:itemBindings="@{discoverViewpagerViewModel.itemBindings}"
+            app:tabLayout="@{discoverViewpagerViewModel.tabLayout}"
+            app:tabStrings="@{discoverViewpagerViewModel.tabStrings}" />
     </RelativeLayout>
 </layout>

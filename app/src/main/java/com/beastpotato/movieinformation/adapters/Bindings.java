@@ -24,56 +24,61 @@ public class Bindings {
         }
     }
 
-    @BindingAdapter(value = {"items", "itemBinding"})
-    public static <T> void showPagerList(ViewPager viewPager, List<T> items, List<ItemBinder<T>> itemBinding) {
-        viewPager.setAdapter(new BindingViewPagerAdapter<>(items, itemBinding));
+    @BindingAdapter(value = {"itemBindings"})
+    public static void showPagerList(ViewPager viewPager, List<ItemBinder> itemBindings) {
+        viewPager.setAdapter(new BindingViewPagerAdapter(itemBindings));
     }
 
-    @BindingAdapter(value = {"tabLayout", "tabStrings", "items", "itemBinding"})
-    public static <T> void showPagerListWithTabs(final ViewPager viewPager, final TabLayout tabLayout, List<String> tabStrings, List<T> items, List<ItemBinder<T>> itemBinding) {
-        viewPager.setAdapter(new BindingViewPagerAdapter<>(items, itemBinding));
+    @BindingAdapter(value = {"tabLayout", "tabStrings", "itemBindings"})
+    public static void showPagerListWithTabs(final ViewPager viewPager, final TabLayout tabLayout, List<String> tabStrings, List<ItemBinder> itemBindings) {
+        if (itemBindings == null) {
+            return;
+        }
+        viewPager.setAdapter(new BindingViewPagerAdapter(itemBindings));
         for (String tabString : tabStrings) {
             tabLayout.addTab(tabLayout.newTab().setText(tabString));
         }
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+        if (tabLayout != null) {
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
+                }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-        viewPager.clearOnPageChangeListeners();
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                }
+            });
+            viewPager.clearOnPageChangeListeners();
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            }
+                }
 
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.getTabAt(position).select();
-            }
+                @Override
+                public void onPageSelected(int position) {
+                    tabLayout.getTabAt(position).select();
+                }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
+                @Override
+                public void onPageScrollStateChanged(int state) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
-    @BindingAdapter(value = {"items", "itemBinding", "layoutManager"})
-    public static <T> void showItemsList(RecyclerView recyclerView, List<T> items, ItemBinder<T> itemBinding, RecyclerView.LayoutManager layoutManager) {
+    @BindingAdapter(value = {"itemBindings", "layoutManager"})
+    public static void showItemsList(RecyclerView recyclerView, List<ItemBinder> itemBindings, RecyclerView.LayoutManager layoutManager) {
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new BindingRecyclerViewAdapter<>(items, itemBinding));
+        recyclerView.setAdapter(new BindingRecyclerViewAdapter(itemBindings));
     }
 
     @BindingAdapter(value = {"imageUrl", "placeholder"}, requireAll = false)

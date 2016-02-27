@@ -6,4 +6,10 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     <string name="menu_search">Search</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="network_error_title">Network Error</string>
+    <string name="network_error_msg">Failed to get something from the internets! :(</string>
+    <string name="movies">Movies</string>
+    <string name="tv_shows">Tv Shows</string>
 </resources>

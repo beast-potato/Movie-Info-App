@@ -4,12 +4,11 @@ import com.beastpotato.potato.api.Constants;
 import com.beastpotato.potato.api.Endpoint;
 import com.beastpotato.potato.api.HeaderParam;
 import com.beastpotato.potato.api.UrlParam;
-import com.beastpotato.potato.api.UrlPathParam;
 
 /**
  * Created by Oleksiy on 2/18/2016.
  */
-@Endpoint(httpMethod = Constants.Http.GET, relativeUrl = "/discover/{discover_type}", jsonExample = "{\n" +
+@Endpoint(httpMethod = Constants.Http.GET, relativeUrl = "/discover/movie", jsonExample = "{\n" +
         "  \"page\": 1,\n" +
         "  \"results\": [\n" +
         "    {\n" +
@@ -37,9 +36,6 @@ import com.beastpotato.potato.api.UrlPathParam;
         "  \"total_results\": 230847\n" +
         "}")
 public abstract class DiscoverMovieEndpoint {
-
-    @UrlPathParam("discover_type")
-    String discoverType;
 
     @UrlParam("api_key")
     String apiKey;
