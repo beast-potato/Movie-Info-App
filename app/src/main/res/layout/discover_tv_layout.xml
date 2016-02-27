@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,12 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/discover_movies_grid_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:itemBindings="@{discoverTvViewModel.itemBindings}"
-            app:layoutManager="@{discoverTvViewModel.layoutManager}" />
+        <include
+            layout="@layout/bind_recycler_view"
+            bind:itemBindings="@{discoverTvViewModel.itemBindings}"
+            bind:layoutManager="@{discoverTvViewModel.layoutManager}" />
     </RelativeLayout>
 
 </layout>

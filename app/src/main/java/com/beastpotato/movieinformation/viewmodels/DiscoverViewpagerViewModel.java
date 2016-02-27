@@ -3,7 +3,6 @@ package com.beastpotato.movieinformation.viewmodels;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.design.widget.TabLayout;
-import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.beastpotato.movieinformation.R;
@@ -45,23 +44,4 @@ public class DiscoverViewpagerViewModel extends BaseObservable {
         return binding.tabs;
     }
 
-    @Bindable
-    public TabLayout.OnTabSelectedListener getOnTabSelectedListener() {
-        return new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(binding.viewPager.getContext(), "tab selected " + tab.getPosition(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        };
-    }
 }

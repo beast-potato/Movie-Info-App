@@ -25,18 +25,18 @@ public class Bindings {
     }
 
     @BindingAdapter(value = {"itemBindings"})
-    public static void showPagerList(ViewPager viewPager, List<ItemBinder> itemBindings) {
+    public static void showPagerList(ViewPager viewPager, List itemBindings) {
         viewPager.setAdapter(new BindingViewPagerAdapter(itemBindings));
     }
 
     @BindingAdapter(value = {"tabLayout", "tabStrings", "itemBindings"})
-    public static void showPagerListWithTabs(final ViewPager viewPager, final TabLayout tabLayout, List<String> tabStrings, List<ItemBinder> itemBindings) {
+    public static void showPagerListWithTabs(final ViewPager viewPager, final TabLayout tabLayout, List tabStrings, List itemBindings) {
         if (itemBindings == null) {
             return;
         }
         viewPager.setAdapter(new BindingViewPagerAdapter(itemBindings));
-        for (String tabString : tabStrings) {
-            tabLayout.addTab(tabLayout.newTab().setText(tabString));
+        for (Object tabString : tabStrings) {
+            tabLayout.addTab(tabLayout.newTab().setText(tabString.toString()));
         }
         if (tabLayout != null) {
             tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -76,7 +76,7 @@ public class Bindings {
     }
 
     @BindingAdapter(value = {"itemBindings", "layoutManager"})
-    public static void showItemsList(RecyclerView recyclerView, List<ItemBinder> itemBindings, RecyclerView.LayoutManager layoutManager) {
+    public static void showItemsList(RecyclerView recyclerView, List itemBindings, RecyclerView.LayoutManager layoutManager) {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new BindingRecyclerViewAdapter(itemBindings));
     }

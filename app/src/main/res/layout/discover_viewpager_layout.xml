@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,16 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background_light_gray"
-            android:setOnTabSelectedListener="@{discoverViewpagerViewModel.onTabSelectedListener}"
             app:tabMode="scrollable" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+        <include
+            layout="@layout/bind_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tabs"
-            app:itemBindings="@{discoverViewpagerViewModel.itemBindings}"
-            app:tabLayout="@{discoverViewpagerViewModel.tabLayout}"
-            app:tabStrings="@{discoverViewpagerViewModel.tabStrings}" />
+            bind:itemBindings="@{discoverViewpagerViewModel.itemBindings}"
+            bind:tabLayout="@{discoverViewpagerViewModel.tabLayout}"
+            bind:tabStrings="@{discoverViewpagerViewModel.tabStrings}" />
+
     </RelativeLayout>
 </layout>

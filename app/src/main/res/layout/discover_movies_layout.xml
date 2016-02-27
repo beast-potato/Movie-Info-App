@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="discoverMoviesViewModel"
             type="com.beastpotato.movieinformation.viewmodels.DiscoverMovieViewModel" />
@@ -13,12 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/discover_movies_grid_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:itemBindings="@{discoverMoviesViewModel.itemBindings}"
-            app:layoutManager="@{discoverMoviesViewModel.layoutManager}" />
+        <include
+            layout="@layout/bind_recycler_view"
+            bind:itemBindings="@{discoverMoviesViewModel.itemBindings}"
+            bind:layoutManager="@{discoverMoviesViewModel.layoutManager}" />
     </RelativeLayout>
 
 </layout>

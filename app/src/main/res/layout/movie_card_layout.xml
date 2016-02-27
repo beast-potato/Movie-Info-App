@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,31 +9,14 @@
             type="com.beastpotato.movieinformation.viewmodels.MovieCardViewModel" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.beastpotato.movieinformation.views.SquareImageView
-                android:id="@+id/item_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:placeholder="@{@drawable/ic_camera_alt_black_24dp}"
-                app:posterImageUrl="@{movieCardViewModel.posterImagePath}"
-                tools:src="@drawable/ic_camera_alt_black_24dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item_image"
-                android:maxLines="2"
-                android:text="@{movieCardViewModel.title}"
-                android:textSize="12sp"
-                tools:text="Description" />
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
+        <include
+            layout="@layout/bind_media_card_view"
+            bind:placeholder="@{@drawable/ic_camera_alt_black_24dp}"
+            bind:posterImageUrl="@{movieCardViewModel.posterImagePath}"
+            bind:text="@{movieCardViewModel.title}" />
+    </FrameLayout>
 </layout>
