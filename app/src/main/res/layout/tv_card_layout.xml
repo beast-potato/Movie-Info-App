@@ -11,11 +11,12 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/background_white">
 
         <include
             layout="@layout/bind_media_card_view"
-            bind:placeholder="@{@drawable/ic_camera_alt_black_24dp}"
+            bind:placeholder="@{@drawable/ic_camera}"
             bind:posterImageUrl="@{tvCardViewModel.posterImagePath}"
             bind:text="@{tvCardViewModel.title}" />
     </FrameLayout>

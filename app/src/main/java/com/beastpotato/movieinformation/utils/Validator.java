@@ -17,8 +17,13 @@ public class Validator {
         return page >= 1 && page <= 1000;
     }
 
-    @Validation(fieldName = "discover_type")
-    public static boolean isDiscoveryTypeValid(String discoveryStr) {
-        return discoveryStr != null && (discoveryStr.equals("tv") || discoveryStr.equals("movie"));
+    @Validation(fieldName = "firstPathPart")
+    public static boolean isFirstPathPartValid(String pathPart) {
+        return pathPart != null;
+    }
+
+    @Validation(fieldName = "secondPathPart")
+    public static boolean isSecondPathPartValid(String pathPart) {
+        return pathPart != null;
     }
 }

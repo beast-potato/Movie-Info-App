@@ -21,11 +21,11 @@ public class DiscoverViewpagerViewModel extends BaseObservable {
     private List<String> tabStrings = new ArrayList<>();
     private DiscoverViewpagerLayoutBinding binding;
 
-    public DiscoverViewpagerViewModel(DiscoverViewpagerLayoutBinding binding, MainActivity activity) {
+    public DiscoverViewpagerViewModel(String firstPathPartMovie, String secondPathPartMovie, String firstPathPartTV, String secondPathPartTV, DiscoverViewpagerLayoutBinding binding, MainActivity activity) {
         this.binding = binding;
-        itemBindings.add(new ItemBinder(R.layout.discover_movies_layout, BR.discoverMoviesViewModel, new DiscoverMovieViewModel(activity)));
+        itemBindings.add(new ItemBinder(R.layout.discover_movies_layout, BR.discoverMoviesViewModel, new DiscoverMovieViewModel(firstPathPartMovie, secondPathPartMovie, activity)));
         tabStrings.add(activity.getString(R.string.movies));
-        itemBindings.add(new ItemBinder(R.layout.discover_tv_layout, BR.discoverTvViewModel, new DiscoverTvViewModel(activity)));
+        itemBindings.add(new ItemBinder(R.layout.discover_tv_layout, BR.discoverTvViewModel, new DiscoverTvViewModel(firstPathPartTV, secondPathPartTV, activity)));
         tabStrings.add(activity.getString(R.string.tv_shows));
     }
 

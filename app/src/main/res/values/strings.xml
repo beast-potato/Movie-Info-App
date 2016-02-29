@@ -2,7 +2,11 @@
     <string name="app_name">Movie Information</string>
     <string name="loading">Loading...</string>
     <string name="discover">Discover</string>
-    <string name="todo">Todo</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="latest">Latest</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="popular">Popular</string>
+    <string name="soon_today">Coming Soon/Airing Today</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     <string name="menu_search">Search</string>

@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.fragments.BaseFragment;
-import com.beastpotato.movieinformation.fragments.DiscoverFragment;
+import com.beastpotato.movieinformation.fragments.ContentFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static int FRAG_TAG = 0;
@@ -79,10 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()) {
                     case R.id.discover_navigation_item:
-                        showFragment(DiscoverFragment.newInstance());
+                        showFragment(ContentFragment.newInstance("discover", "movie", "discover", "tv"));
+                        setTitle(getString(R.string.discover));
                         return true;
-                    case R.id.todo_navigation_item:
-                        //todo
+                    case R.id.top_rated_navigation_item:
+                        showFragment(ContentFragment.newInstance("movie", "top_rated", "tv", "top_rated"));
+                        setTitle(getString(R.string.top_rated));
+                        return true;
+                    case R.id.now_playing_navigation_item:
+                        showFragment(ContentFragment.newInstance("movie", "now_playing", "tv", "on_the_air"));
+                        setTitle(getString(R.string.now_playing));
+                        return true;
+                    case R.id.popular_navigation_item:
+                        showFragment(ContentFragment.newInstance("movie", "popular", "tv", "popular"));
+                        setTitle(getString(R.string.popular));
                         return true;
                 }
                 return false;
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
 
-        showFragment(DiscoverFragment.newInstance());
+        showFragment(ContentFragment.newInstance("discover", "movie", "discover", "tv"));
     }
 
     private BaseFragment getCurrentFragment() {
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showFragment(BaseFragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.fragment_container, fragment, "" + FRAG_TAG);
+        ft.replace(R.id.fragment_container, fragment, "" + FRAG_TAG);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.addToBackStack(null);
         ft.commit();
@@ -173,5 +183,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.ok), onOkClickListener);
         builder.setNegativeButton(getString(R.string.cancel), onCancelClickListener);
         builder.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

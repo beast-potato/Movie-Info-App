@@ -28,14 +28,15 @@ public class DiscoverTvViewModel extends BaseRequestViewModel<DiscoverTvEndpoint
     private List<ItemBinder> itemBindings;
     private MainActivity mainActivity;
 
-    public DiscoverTvViewModel(MainActivity activity) {
+    public DiscoverTvViewModel(String firstPathPart, String secondPathPart, MainActivity activity) {
         super(DiscoverTvEndpointApiRequest.class, Constants.baseUrl, activity);
         this.layoutManager.set(new GridLayoutManager(MyApplication.getContext(), 2));
         this.itemBindings = new ArrayList<>();
         this.mainActivity = activity;
         getModel().setApiKey(Constants.apiKey);
         getModel().setContentType(Constants.contentTypeJson);
-        getModel().setSortBy("popularity.desc");
+        getModel().setFirstPathPart(firstPathPart);
+        getModel().setSecondPathPart(secondPathPart);
         getModel().setPage(10);
         loadData(new ApiRequest.RequestCompletion<DiscoverTvEndpointApiResponse>() {
             @Override
@@ -71,7 +72,7 @@ public class DiscoverTvViewModel extends BaseRequestViewModel<DiscoverTvEndpoint
     @Bindable
     public List<ItemBinder> getItemBindings() {
         itemBindings = new ArrayList<>();
-        if (discoverTvModel != null) {
+        if (discoverTvModel != null && discoverTvModel.results != null) {
             for (Result movie : discoverTvModel.results) {
                 itemBindings.add(new ItemBinder(R.layout.tv_card_layout, BR.tvCardViewModel, new TvCardViewModel(movie)));
             }

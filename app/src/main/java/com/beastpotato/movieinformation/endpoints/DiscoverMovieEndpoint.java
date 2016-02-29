@@ -4,11 +4,13 @@ import com.beastpotato.potato.api.Constants;
 import com.beastpotato.potato.api.Endpoint;
 import com.beastpotato.potato.api.HeaderParam;
 import com.beastpotato.potato.api.UrlParam;
+import com.beastpotato.potato.api.UrlPathParam;
 
 /**
  * Created by Oleksiy on 2/18/2016.
  */
-@Endpoint(httpMethod = Constants.Http.GET, relativeUrl = "/discover/movie", jsonExample = "{\n" +
+@Endpoint(httpMethod = Constants.Http.GET, relativeUrl = "/{firstPathPart}/{secondPathPart}", jsonExample =
+        "{\n" +
         "  \"page\": 1,\n" +
         "  \"results\": [\n" +
         "    {\n" +
@@ -43,9 +45,12 @@ public abstract class DiscoverMovieEndpoint {
     @UrlParam("page")
     Integer page;
 
-    @UrlParam("sort_by")
-    String sortBy;
-
     @HeaderParam("Content-Type")
     String contentType;
+
+    @UrlPathParam("firstPathPart")
+    String firstPathPart;
+
+    @UrlPathParam("secondPathPart")
+    String secondPathPart;
 }

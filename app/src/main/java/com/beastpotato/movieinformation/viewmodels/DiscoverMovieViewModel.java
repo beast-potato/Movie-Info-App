@@ -29,15 +29,16 @@ public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEn
     private MainActivity mainActivity;
 
 
-    public DiscoverMovieViewModel(MainActivity activity) {
+    public DiscoverMovieViewModel(String firstPathPart, String secondPathPart, MainActivity activity) {
         super(DiscoverMovieEndpointApiRequest.class, Constants.baseUrl, activity);
         this.layoutManager.set(new GridLayoutManager(MyApplication.getContext(), 2));
         this.itemBindings = new ArrayList<>();
         this.mainActivity = activity;
         getModel().setApiKey(Constants.apiKey);
         getModel().setContentType(Constants.contentTypeJson);
-        getModel().setSortBy("popularity.desc");
         getModel().setPage(10);
+        getModel().setFirstPathPart(firstPathPart);
+        getModel().setSecondPathPart(secondPathPart);
         loadData(new ApiRequest.RequestCompletion<DiscoverMovieEndpointApiResponse>() {
             @Override
             public void onResponse(DiscoverMovieEndpointApiResponse data) {
@@ -73,7 +74,7 @@ public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEn
     @Bindable
     public List<ItemBinder> getItemBindings() {
         itemBindings = new ArrayList<>();
-        if (discoverMovieModel != null) {
+        if (discoverMovieModel != null && discoverMovieModel.results != null) {
             for (Result movie : discoverMovieModel.results) {
                 itemBindings.add(new ItemBinder(R.layout.movie_card_layout, BR.movieCardViewModel, new MovieCardViewModel(movie)));
             }
