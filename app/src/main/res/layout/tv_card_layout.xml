@@ -16,9 +16,9 @@
 
         <include
             layout="@layout/bind_media_card_view"
+            bind:clickListener="@{tvCardViewModel.onClickListener}"
             bind:placeholder="@{@drawable/ic_camera}"
-            bind:posterImageUrl="@{tvCardViewModel.posterImagePath}"
-            bind:text="@{tvCardViewModel.title}" />
+            bind:posterImageUrl="@{tvCardViewModel.posterImagePath}" />
     </FrameLayout>
 
 </layout>

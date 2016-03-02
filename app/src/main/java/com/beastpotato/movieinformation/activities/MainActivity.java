@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.beastpotato.movieinformation.R;
 import com.beastpotato.movieinformation.fragments.BaseFragment;
 import com.beastpotato.movieinformation.fragments.ContentFragment;
+import com.beastpotato.movieinformation.fragments.DetailFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static int FRAG_TAG = 0;
@@ -187,6 +188,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        if (getCurrentFragment() instanceof DetailFragment) {
+            super.onBackPressed();
+        } else {
+            finish();
+        }
     }
 }

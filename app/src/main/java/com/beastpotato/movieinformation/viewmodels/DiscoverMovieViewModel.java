@@ -76,7 +76,7 @@ public class DiscoverMovieViewModel extends BaseRequestViewModel<DiscoverMovieEn
         itemBindings = new ArrayList<>();
         if (discoverMovieModel != null && discoverMovieModel.results != null) {
             for (Result movie : discoverMovieModel.results) {
-                itemBindings.add(new ItemBinder(R.layout.movie_card_layout, BR.movieCardViewModel, new MovieCardViewModel(movie)));
+                itemBindings.add(new ItemBinder(R.layout.movie_card_layout, BR.movieCardViewModel, new MovieCardViewModel(movie, mainActivity)));
             }
         }
         return itemBindings;

@@ -74,7 +74,7 @@ public class DiscoverTvViewModel extends BaseRequestViewModel<DiscoverTvEndpoint
         itemBindings = new ArrayList<>();
         if (discoverTvModel != null && discoverTvModel.results != null) {
             for (Result movie : discoverTvModel.results) {
-                itemBindings.add(new ItemBinder(R.layout.tv_card_layout, BR.tvCardViewModel, new TvCardViewModel(movie)));
+                itemBindings.add(new ItemBinder(R.layout.tv_card_layout, BR.tvCardViewModel, new TvCardViewModel(movie, mainActivity)));
             }
         }
         return itemBindings;
