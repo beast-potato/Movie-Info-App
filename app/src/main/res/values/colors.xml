@@ -6,6 +6,7 @@
     <color name="background_white">#ffffff</color>
     <color name="background_light_gray">#efefef</color>
     <color name="copy_normal">#202020</color>
+    <color name="copy_light">#414141</color>
     <color name="copy_white">#ffffff</color>
     <color name="background_overlay">#ce3b3b3b</color>
     <color name="background_gray">#d2d2d2</color>

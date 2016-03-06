@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
@@ -91,4 +92,8 @@ public class Bindings {
         Picasso.with(imageView.getContext()).load(ImageManager.getInstance().getPosterImageUrl(imageUrl)).placeholder(drawable).into(imageView);
     }
 
+    @BindingAdapter(value = {"rating"})
+    public static void setRating(AppCompatRatingBar ratingBar, Double rating) {
+        ratingBar.setRating(rating == null ? 0 : (float) ratingBar.getNumStars() * rating.floatValue());
+    }
 }

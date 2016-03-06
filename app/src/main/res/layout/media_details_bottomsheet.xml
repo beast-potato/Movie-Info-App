@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="java.lang.String" />
+
+        <variable
+            name="descr"
+            type="java.lang.String" />
+
+        <variable
+            name="releaseDate"
+            type="java.lang.String" />
+
+        <variable
+            name="rating"
+            type="java.lang.Double" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_light_gray"
+        android:orientation="vertical"
+        app:behavior_peekHeight="?attr/actionBarSize"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/details"
+                android:textColor="@color/copy_normal"
+                android:textSize="@dimen/text_large" />
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_toRightOf="@+id/details_title"
+                android:src="@drawable/ic_unfold_more" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textColor="@color/copy_light"
+            android:textSize="@dimen/text_medium"
+            tools:text="title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{releaseDate}"
+            android:textColor="@color/copy_light"
+            android:textSize="@dimen/text_medium"
+            tools:text="2016" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{descr}"
+            android:textColor="@color/copy_light"
+            android:textSize="@dimen/text_medium"
+            tools:text="description" />
+
+        <android.support.v7.widget.AppCompatRatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:numStars="5"
+            android:rating="0.0"
+            android:stepSize="0.1"
+            app:rating="@{rating}" />
+    </LinearLayout>
+</layout>

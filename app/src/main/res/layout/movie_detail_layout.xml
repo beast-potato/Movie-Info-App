@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,7 +11,24 @@
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_white">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_collapseMode="parallax"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:placeholder="@{@drawable/ic_camera}"
+            app:posterImageUrl="@{movieViewModel.poster}" />
+
+
+        <include
+            layout="@layout/media_details_bottomsheet"
+            bind:descr="@{movieViewModel.description}"
+            bind:rating="@{movieViewModel.rating}"
+            bind:releaseDate="@{movieViewModel.releaseDate}"
+            bind:title="@{movieViewModel.name}" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>
