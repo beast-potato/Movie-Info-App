@@ -33,7 +33,7 @@ dependencies {
     compile 'com.android.support:palette-v7:23.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     //potato lib
-    compile 'com.beastpotato.potato:potato_api:2.3'
-    apt 'com.beastpotato.potato:potato_compiler:2.3'
+    compile 'com.beastpotato.potato:potato_api:2.4'
+    apt 'com.beastpotato.potato:potato_compiler:2.4'
     compile 'org.glassfish.main:javax.annotation:4.0-b33'
 }
